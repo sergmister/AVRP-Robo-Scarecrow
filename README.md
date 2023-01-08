@@ -9,5 +9,6 @@ Robo-Scarecrow is a bird-deterrance system built to track and target birds with 
 - filter.py: defines the algorithm to filter all of the detections to determine a target
 - InverseKinematics.py: defines the inverse kinematic equations for the system
 - servo.py: code to communicate with the servo motors via serial
+- birdlaser.urdf: urdf file to describe system (servos, laser pointer, etc) to be used for inverse kinematics
 
 ![URDF Demo Gif](urdf_demo.gif)
