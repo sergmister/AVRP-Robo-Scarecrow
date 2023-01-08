@@ -85,7 +85,7 @@
   <joint name="base_link_to_board" type="fixed">
     <parent link="base_link"/>
     <child link="board"/>
-    <origin rpy="-1.57079632679 0 3.14159265359"/>
+    <origin rpy="-1.57079632679 0 3.14159265359" xyz="-.116525 -.06525 -.03"/>
   </joint>
 
   <joint name="board_to_rotation_servo" type="fixed">
