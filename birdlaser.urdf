@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<robot name="birdlaser">
+
+  <material name="blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+
+  <material name="red">
+    <color rgba="1 0 0 1"/>
+  </material>
+
+  <material name="green">
+    <color rgba="0 1 0 1"/>
+  </material>
+
+  <link name="base_link">
+  </link>
+
+  <link name="board">
+    <visual>
+      <geometry>
+        <box size="0.27305 .01905 0.18415"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <link name="rotation_servo">
+    <visual>
+      <geometry>
+        <box size="0.0254 0.03175 0.05715"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <link name="rotation_servo_arm">
+    <visual>
+      <geometry>
+        <box size="0.0508 0.0635 0.0254"/>
+      </geometry>
+      <material name="green"/>
+      <origin xyz="0 -0.03175 0"/>
+    </visual>
+  </link>
+
+  <link name="tilt_servo">
+    <visual>
+      <geometry>
+        <box size="0.0254 0.03175 0.05715"/>
+      </geometry>
+      <material name="red"/>
+      <origin xyz="0 0 .0127"/>
+    </visual>
+  </link>
+
+  <link name="tilt_servo_arm">
+    <visual>
+      <geometry>
+        <box size="0.0508 0.0635 0.0254"/>
+      </geometry>
+      <material name="green"/>
+      <origin xyz="0 0.01905 0"/>
+    </visual>
+  </link>
+
+  <link name="pointer">
+    <visual>
+      <geometry>
+        <cylinder radius=".0127" length="0.1016"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <link name="laser">
+    <visual>
+      <geometry>
+        <cylinder radius=".00254" length="0.254"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+  </link>
+
+  <joint name="base_link_to_board" type="fixed">
+    <parent link="base_link"/>
+    <child link="board"/>
+    <origin rpy="-1.57079632679 0 3.14159265359"/>
+  </joint>
+
+  <joint name="board_to_rotation_servo" type="fixed">
+    <parent link="board"/>
+    <child link="rotation_servo"/>
+    <origin xyz="0.104775 -0.0254 0"/>
+  </joint>
+
+  <joint name="rotation_servo_to_arm" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57079632679" upper="1.57079632679"/>
+    <parent link="rotation_servo"/>
+    <child link="rotation_servo_arm"/>
+    <origin xyz="0 -.015875 -.009525"/>
+  </joint>
+
+  <joint name="rotation_arm_to_tilt_servo" type="fixed">
+    <parent link="rotation_servo_arm"/>
+    <child link="tilt_servo"/>
+    <origin rpy="1.57079632679 0 0" xyz="-.0127 -0.0508 0"/>
+  </joint>
+
+  <joint name="tilt_servo_to_arm" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit lower="-1.57079632679" upper="1.57079632679"/>
+    <parent link="tilt_servo"/>
+    <child link="tilt_servo_arm"/>
+    <origin rpy="1.57079632679 0 1.57079632679" xyz="0 0 0"/>
+  </joint>
+
+  <joint name="tilt_arm_to_pointer" type="fixed">
+    <parent link="tilt_servo_arm"/>
+    <child link="pointer"/>
+    <origin xyz="0 0.0635 0"/>
+  </joint>
+
+  <joint name="pointer_to_laser" type="prismatic">
+    <axis xyz="0 0 1"/>
+    <limit lower="-999" upper="999"/>
+    <parent link="pointer"/>
+    <child link="laser"/>
+    <origin xyz="0 0 -0.127"/>
+  </joint>
+
+</robot>
