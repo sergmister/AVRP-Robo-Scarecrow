@@ -12,3 +12,4 @@ Robo-Scarecrow is a bird-deterrance system built to track and target birds with 
 - birdlaser.urdf: urdf file to describe system (servos, laser pointer, etc) to be used for inverse kinematics
 
 ![URDF Demo Gif](urdf_demo.gif)
+![Servo Demo Gif](servo_demo_small.gif)
